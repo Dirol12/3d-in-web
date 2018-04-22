@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.22)  22 APR 2018 17:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.22)  22 APR 2018 18:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1231,12 +1231,12 @@ LaTeX Font Info:    ... okay on input line 3.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(85.35826pt, 469.47049pt, 42.67912pt)
-* v-part:(T,H,B)=(56.9055pt, 711.319pt, 76.82234pt)
+* h-part:(L,W,R)=(85.35826pt, 483.69687pt, 28.45274pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=469.47049pt
-* \textheight=711.319pt
+* \textwidth=483.69687pt
+* \textheight=731.23584pt
 * \oddsidemargin=13.08827pt
 * \evensidemargin=13.08827pt
 * \topmargin=-54.36449pt
@@ -1382,16 +1382,113 @@ Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 4.
 Package babel Info: Redefining russian shorthand "~
 (babel)             in language  on input line 4.
+ (./contents/domain/overview_3d.tex)
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language  on input line 8.
 
-Overfull \hbox (9.55853pt too wide) in paragraph at lines 17--21
-\T2A/ftm/m/n/14.4 called 3D rendering or used in non-graphical computer simulat
-ions and calculations.
+(./contents/domain/overview_3d_modelling.tex
+Overfull \hbox (5.64249pt too wide) in paragraph at lines 1--5
+[]\T2A/ftm/m/n/14.4 В кон-тек-сте трех-мер-ной ком-пью-тер-ной гра-фи-ки, 3D-мо
+делированием (ли-
+ []
+
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language  on input line 8.
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language  on input line 8.
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (29.54733pt too wide) in paragraph at lines 15--23
+\T2A/ftm/m/n/14.4 represent the surface, e.g. the boundary of the object, not i
+ts volume (like an infinitesimally
  []
 
 
-Overfull \hbox (12.63837pt too wide) in paragraph at lines 17--21
-\T2A/ftm/m/n/14.4 With 3D printing, 3D models are similarly rendered into a 3D 
-physical representation
+Overfull \hbox (8.29303pt too wide) in paragraph at lines 15--23
+\T2A/ftm/m/n/14.4 Solid and shell modeling can create functionally identical ob
+jects. Differences between
+ []
+
+
+Overfull \hbox (27.12814pt too wide) in paragraph at lines 24--27
+\T2A/ftm/m/n/14.4 surfaces) are by far the most common representation. Level se
+ts are a useful representation
+ []
+
+
+Overfull \hbox (24.53618pt too wide) in paragraph at lines 28--35
+\T2A/ftm/m/n/14.4 point coordinate of a sphere and a point on its circumference
+ into a polygon representation
+ []
+
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language  on input line 55.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language  on input line 55.
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language  on input line 55.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language  on input line 55.
+[2]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.70 ... 169вЂ“180. doi:10.1007/978-3-319-49157-8_
+                                                  14.
+? 
+
+LaTeX Warning: Command \textemdash invalid in math mode on input line 71.
+
+
+LaTeX Warning: Command \textendash invalid in math mode on input line 72.
+
+)
+! Missing $ inserted.
+<inserted text> 
+                $
+l.11 
+     
+? 
+
+Overfull \hbox (8.78171pt too wide) in paragraph at lines 57--11
+\T2A/ftm/m/n/14.4 Engineering. Retrieved 2017-11-18. "3D Scanning Advancements 
+in Medical Science".
+ []
+
+
+Overfull \hbox (13.66228pt too wide) in paragraph at lines 57--11
+\T2A/ftm/m/n/14.4 guide". 3D Hubs. Retrieved 2017-11-18. "3D Printing Toys". Bu
+siness Insider. Retrieved
+ []
+
+
+Overfull \hbox (50.98892pt too wide) in paragraph at lines 57--11
+\T2A/ftm/m/n/14.4 25 January 2015. "Printout3D^^VWolfram Language Documentation
+". reference.wolfram.com.
+ []
+
+
+Overfull \hbox (35.57999pt too wide) in paragraph at lines 57--11
+\T2A/ftm/m/n/14.4 Interactive 3D Models of Cultural Artifacts. Communications i
+n Computer and Information
+ []
+
+
+Overfull \hbox (1001.73012pt too wide) in paragraph at lines 57--11
+\T2A/ftm/m/n/14.4 319-49157-8$[]\OT1/cmr/m/n/14.4 4\OML/cmm/m/it/14.4 :Yu; D:\O
+T1/cmr/m/n/14.4 ; \OML/cmm/m/it/14.4 Hunter; J:\OT1/cmr/m/n/14.4 (2014)\OML/cmm
+/m/it/14.4 :\OT1/cmr/m/n/14.4 "\OML/cmm/m/it/14.4 X\OT1/cmr/m/n/14.4 3\OML/cmm/
+m/it/14.4 DFragmentIdentifiers\OT1/cmr/m/n/14.4 ^^V\OML/cmm/m/it/14.4 Extending
+theOpenAnnotationModeltoSupportSemanticAnnotationof\OT1/cmr/m/n/14.4 3\OML/cmm/
+m/it/14.4 DCulturalHeritageObjectsovertheWeb\OT1/cmr/m/n/14.4 "\OML/cmm/m/it/14
+.4 :InternationalJournalofHeritageintheDigitalEra:\OT1/cmr/m/n/14.4 3(3) :
  []
 
 )
@@ -1416,15 +1513,16 @@ Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 7.
 Package babel Info: Redefining russian shorthand "~
 (babel)             in language  on input line 7.
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+[3]
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language  on input line 7.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language  on input line 7.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 7.
  (./main.aux
 LaTeX Font Info:    Try loading font information for OT1+ftm on input line 21.
-
-(/usr/share/texmf/tex/latex/scalable-cyrfonts-tex/ot1ftm.fd
+ (/usr/share/texmf/tex/latex/scalable-cyrfonts-tex/ot1ftm.fd
 File: ot1ftm.fd 2012/09/15 Fontinst v1.933 font definitions for OT1/ftm.
 ))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 7.
@@ -1437,7 +1535,7 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  7FBF24DD5CE5ACEA8A1E22B68530229B;492.
+(rerunfilecheck)             After:  DB503FE2578A540CAE76ED6838FE1590;859.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1447,19 +1545,23 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 7.
  ) 
 Here is how much of TeX's memory you used:
- 17899 strings out of 493029
- 247763 string characters out of 6136234
- 367786 words of memory out of 5000000
- 21071 multiletter control sequences out of 15000+600000
+ 17927 strings out of 493029
+ 248264 string characters out of 6136234
+ 370780 words of memory out of 5000000
+ 21089 multiletter control sequences out of 15000+600000
  14165 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,43p,898b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,43p,898b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/scalable-cyrfonts-tex/6r.enc}</usr/share/te
-xmf/fonts/type1/public/scalable-cyrfonts-tex/ftmr6w.pfb>
-Output written on main.pdf (1 page, 46976 bytes).
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/sca
+lable-cyrfonts-tex/ftmr6w.pfb>
+Output written on main.pdf (3 pages, 97710 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
- 15 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
+ 53 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
+ 7 named destinations out of 1000 (max. 500000)
  25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
