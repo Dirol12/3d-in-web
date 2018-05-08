@@ -10,64 +10,66 @@
 моделей.
 
 % - Представление моделей
-Almost all 3D models can be divided into two categories.
+Практически все трехмерные модели могут быть условно поделены на две основные категории.
+Цельные -- данные модели определяют объем объекта, который они представляют. Цельные модели в основном используются в инжеренрых и медицинских симуляциях
+и обычно строятся с помощью геометрических примитивов.\cite{solid_modelling}
 
-Solid – These models define the volume of the object they represent (like a rock). Solid models are mostly used for engineering
-and medical simulations, and are usually built with constructive solid geometry
-Shell/boundary – these models represent the surface, e.g. the boundary of the object, not its volume
-(like an infinitesimally
-thin eggshell). Almost all visual models used in games and film are shell models.
-Solid and shell modeling can create functionally identical objects. Differences between them are mostly variations in the way
-they are created and edited and conventions of use in various fields and differences in types of approximations between the
-model and reality.
+Оболочечные либо поверхностные -- данные модели представляют поверхность объекта (например, сферу шара, либо бесконечно тонкую яичную скорлупу).
+Основная область применения таких моделей -- игровая и киноиндустрия, визуализация данных.
 
-Shell models must be manifold (having no holes or cracks in the shell) to be meaningful as a real object. Polygonal meshes
-(and to a lesser extent subdivision surfaces) are by far the most common representation. Level sets are a useful representation
-for deforming surfaces which undergo many topological changes such as fluids.
+Цельные и поверхностные модели функциональ представляют идентичные объекты. Разница между ними в основном состоит в том, каким образом они
+определяются и редактируются, а так же набор соглашений используемых при работе с такими моделями, например -- правила и типы аппроксимации
+при вычислениях. 
 
-The process of transforming representations of objects, such as the middle point coordinate of a sphere and a point on its
-circumference into a polygon representation of a sphere, is called tessellation. This step is used in polygon-based rendering,
-where objects are broken down from abstract representations ("primitives") such as spheres, cones etc., to so-called meshes,
-which are nets of interconnected triangles. Meshes of triangles (instead of e.g. squares) are popular as they have proven to
-be easy to rasterise (the surface described by each triangle is planar, so the projection is always convex); .[4] Polygon 
-representations are not used in all rendering techniques, and in these cases the tessellation step is not included in the
-transition from abstract representation to rendered scene.
+Поверхностные модели должны быть непрерывными (то есть не иметь отверстий, трещин в оболочке) для того чтобы использовать их в
+качестве натурального объекта. Полигональные сетки (и, в несколько меньшей степени, подразделенные поверхности) являются наиболее широко распространенной
+категорией поверхностных моделей. Горизонтально выровненные наборы полигонов являются полезным инструментов в представлении видоизменяющихся или
+деформирующихся поверхностей, подверженных большому числу топологических изменений, таких как, например, поверхность жидкости.
+
+Процесс трансформации представления объектов, например, таких как координаты цетральной точки сферы и ее радиуса, в полигональное представление называется тесселяцией.
+Этот процесс генерирует полигональный рендеринг, в котором объекты представленные в виде абстрактных фигур (называемые примитивами - сферы, конусы и т.п) 
+преобразуются в полигональные меши, состоящие из сети взаимосвязынных треугольников. 
+
+Меши, существующие в виде треугольников, гораздо популярнее, нежели меши основанные из квадратах, 
+потому что было доказано, что они легче поддаются растеризации (поверхность, описываемая каждым треугольником, является плоской, поэтому проекция всегда выпукла).
+Полигональное представление не всегда используется в процессе рендеринга, и в этих случаях тесселяция не включена в преобразование из абстрактного представления в конечный результат рендеринга.
 
 % - Процесс моделирования
-There are three popular ways to represent a model:
+Существует три популярных пути представления модели:
 
-Polygonal modeling – Points in 3D space, called vertices, are connected by line segments to form a polygon mesh. The vast
-majority of 3D models today are built as textured polygonal models, because they are flexible and because computers can
-render them so quickly. However, polygons are planar and can only approximate curved surfaces using many polygons.
-Curve modeling – Surfaces are defined by curves, which are influenced by weighted control points. The curve follows (but
-does not necessarily interpolate) the points. Increasing the weight for a point will pull the curve closer to that point.
-Curve types include nonuniform rational B-spline (NURBS), splines, patches, and geometric primitives
-Digital sculpting – Still a fairly new method of modeling, 3D sculpting has become very popular in the few years it has
-been around.[citation needed] There are currently three types of digital sculpting: Displacement, which is the most widely
-used among applications at this moment, uses a dense model (often generated by subdivision surfaces of a polygon control
-mesh) and stores new locations for the vertex positions through use of an image map that stores the adjusted locations.
-Volumetric, loosely based on voxels, has similar capabilities as displacement but does not suffer from polygon stretching
-when there are not enough polygons in a region to achieve a deformation. Dynamic tessellation is similar to voxel but divides
-the surface using triangulation to maintain a smooth surface and allow finer details. These methods allow for very artistic
-exploration as the model will have a new topology created over it once the models form and possibly details have been sculpted.
-The new mesh will usually have the original high resolution mesh information transferred into displacement data or normal map
-data if for a game engine.
+1) Полигональное моделирование 
+Вершины в трехмерном пространстве, называемые вертексами, соединенные отрезками прямых, формирует полигональную сеть.
+Подавляющее большинство существующих трехмерных моделей на сегодня основано на текстурированных полигональных моделях, из-за их гибкости
+и возможности компьютеров использовать сплайновое моделирование.
+%Polygonal modeling – Points in 3D space, called vertices, are connected by line segments to form a polygon mesh. The vast
+%majority of 3D models today are built as textured polygonal models, because they are flexible and because computers can
+%rurve modeling – Surfaces are defined by curves, which are influenced by weighted control points. The curve follows (but
+%does not necessarily interpolate) the points. Increasing the weight for a point will pull the curve closer to that point.
+%Curve types include nonuniform rational B-spline (NURBS), splines, patches, and geometric primitives
+%Digital sculpting – Still a fairly new method of modeling, 3D sculpting has become very popular in the few years it has
+%been around.[citation needed] There are currently three types of digital sculpting: Displacement, which is the most widely
+%sed among applications at this moment, uses a dense model (often generated by subdivision surfaces of a polygon control
+%mesh) and stores new locations for the vertex positions through use of an image map that stores the adjusted locations.
+%Volumetric, loosely based on voxels, has similar capabilities as displacement but does not suffer from polygon stretching
+%when there are not enough polygons in a region to achieve a deformation. Dynamic tessellation is similar to voxel but divides
+%the surface using triangulation to maintain a smooth surface and allow finer details. These methods allow for very artistic
+%exploration as the model will have a new topology created over it once the models form and possibly details have been sculpted.
+%The new mesh will usually have the original high resolution mesh information transferred into displacement data or normal map
+%data if for a game engine.
 
 % References
- "ERIS Project Starts". ESO Announcement. Retrieved 14 June 2013.
- "What is Solid Modeling? 3D CAD Software. Applications of Solid Modeling". Brighthub Engineering. Retrieved 2017-11-18.
- "3D Scanning Advancements in Medical Science". Konica Minolta. Retrieved 24 October 2011.
- Jon Radoff, Anatomy of an MMORPG Archived 2009-12-13 at the Wayback Machine., August 22, 2008
- "Lands' End First With New 'My Virtual Model' Technology: Takes Guesswork Out of Web Shopping for Clothes That Fit".
- PRNewswire. Lands' End. February 12, 2004. Retrieved 2013-11-24.
- "All About Virtual Fashion and the Creation of 3D Clothing". CGElves. Retrieved 25 December 2015.
- "3D Clothes made for The Hobbit using Marvelous Designer". 3DArtist. Retrieved 9 May 2013.
- "What is 3D Printing? The definitive guide". 3D Hubs. Retrieved 2017-11-18.
- "3D Printing Toys". Business Insider. Retrieved 25 January 2015.
- "Printout3D—Wolfram Language Documentation". reference.wolfram.com. Retrieved 2016-08-06.
- "New Trends in 3D Printing – Customized Medical Devices". Envisiontec. Retrieved 25 January 2015.
- Sikos, L. F. (2016). Rich Semantics for Interactive 3D Models of Cultural Artifacts. Communications in Computer and
- Information Science. 672. Springer International Publishing. pp. 169–180. doi:10.1007/978-3-319-49157-8_14.
- Yu, D.; Hunter, J. (2014). "X3D Fragment Identifiers—Extending the Open Annotation Model to Support Semantic Annotation
- of 3D Cultural Heritage Objects over the Web". International Journal of Heritage in the Digital Era. 3 (3): 579–596.
- doi:10.1260/2047-4970.3.3.579.
+% "3D Scanning Advancements in Medical Science". Konica Minolta. Retrieved 24 October 2011.
+% Jon Radoff, Anatomy of an MMORPG Archived 2009-12-13 at the Wayback Machine., August 22, 2008
+% "Lands' End First With New 'My Virtual Model' Technology: Takes Guesswork Out of Web Shopping for Clothes That Fit".
+% PRNewswire. Lands' End. February 12, 2004. Retrieved 2013-11-24.
+% "All About Virtual Fashion and the Creation of 3D Clothing". CGElves. Retrieved 25 December 2015.
+% "3D Clothes made for The Hobbit using Marvelous Designer". 3DArtist. Retrieved 9 May 2013.
+% "What is 3D Printing? The definitive guide". 3D Hubs. Retrieved 2017-11-18.
+% "3D Printing Toys". Business Insider. Retrieved 25 January 2015.
+% "Printout3D—Wolfram Language Documentation". reference.wolfram.com. Retrieved 2016-08-06.
+% "New Trends in 3D Printing – Customized Medical Devices". Envisiontec. Retrieved 25 January 2015.
+ %Sikos, L. F. (2016). Rich Semantics for Interactive 3D Models of Cultural Artifacts. Communications in Computer and
+ %Information Science. 672. Springer International Publishing. pp. 169–180. doi:10.1007/978-3-319-49157-8_14.
+ %Yu, D.; Hunter, J. (2014). "X3D Fragment Identifiers—Extending the Open Annotation Model to Support Semantic Annotation
+ %of 3D Cultural Heritage Objects over the Web". International Journal of Heritage in the Digital Era. 3 (3): 579–596.
+ %doi:10.1260/2047-4970.3.3.579.
