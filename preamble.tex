@@ -373,6 +373,13 @@
     basicstyle=\normalsize\ttfamily
 }
 
+\lstdefinelanguage{HTTP_HEADERS}{
+    sensitive=true,
+    keywords={}
+    keywords=[2]{PUT, POST, DELETE, UPDATE}, 
+    otherkeywords={Content-Type:}
+}
+
 % Зачем: Нумерация листингов в пределах секции
 \AtBeginDocument{\numberwithin{lstlisting}{section}}
 
