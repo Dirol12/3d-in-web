@@ -5,12 +5,13 @@ else
 endif
 PDFLATEX = pdflatex
 DIPLOMA_REPORT_PDF = main
+REVIEW_PDF = review
 TITLE_PDF = title
 BIBTEX = bibtex
 RM = rm -f
 GREP = grep
 
-all: $(DIPLOMA_REPORT_PDF).pdf $(TITLE_PDF).pdf
+all: $(DIPLOMA_REPORT_PDF).pdf $(TITLE_PDF).pdf $(REVIEW_PDF).pdf
 
 fast: *.tex
 	latexmk -pdf -pdflatex="pdflatex" $(DIPLOMA_REPORT_PDF)
@@ -28,16 +29,17 @@ $(DIPLOMA_REPORT_PDF).pdf: *.tex
 	$(BIBTEX) $(DIPLOMA_REPORT_PDF).aux
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
-	cp $(DIPLOMA_REPORT_PDF).pdf ../example_diploma.pdf
 
 
 $(TITLE_PDF).pdf: *.tex
 	$(PDFLATEX) $(TITLE_PDF)
 
+$(REVIEW_PDF).pdf: *.tex
+	$(PDFLATEX) $(REVIEW_PDF)
 
 cleanall: clean
 	$(RM)  *.pdf
 
 .PHONY: clean
 clean:
-	$(RM) *.aux *.log *.out *.toc *.gz *.gz\(busy\) *.blg *.bbl $(DIPLOMA_REPORT_PDF).pdf $(TASK_PDF).pdf $(TITLE_PDF).pdf $(PRACTICE_REPORT_PDF).pdf $(COURSE_REPORT_PDF).pdf
+	$(RM) *.aux *.log *.out *.toc *.gz *.gz\(busy\) *.blg *.bbl $(DIPLOMA_REPORT_PDF).pdf $(TASK_PDF).pdf $(TITLE_PDF).pdf $(PRACTICE_REPORT_PDF).pdf $(COURSE_REPORT_PDF).pdf $(REVIEW_PDF).pdf
