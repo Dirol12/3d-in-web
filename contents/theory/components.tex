@@ -130,3 +130,64 @@
 \item getSubdividerFor(modelInfo) -- предоставляет реализацию типа VertexGe-ometryHelper, сконфигурированную для данной модели. Является методом фабрикой, предназначенной для использования в других
 частях системы (например, в компоненте пользовательского интерфейса, внутри обработчика событий по манипуляции моделью).
 \end{itemize}
+
+
+\subsubsection{Компонент хранения}
+\label{sub:theory:components:persistance}
+
+Основное назначение компонента хранения данных состоит в сохранении состояния сессии использования приложения между перезапусками, хранении пользовательских настроек без необходимости доступа к
+удаленному серверу, кешировании данных о трехмерных моделях в их бинарном виде при выгрузке модели из области работы и для реализации оффлайн-доступа к системе.
+Поскольку в первой версии разрабатываемой системы не подразумевается возможности кросс-клиентского сохранения данных, что означает что при смене клиента (компьютера или иного устройства доступа),
+контекст выполнения приложения не будет сохранен, основным механизмом длительного хранения данных в приложении выступает механизм браузера Local Storage.
+
+Однако для сохранения возможностей по расширяемости приложения следует ввести дополнительный слой абстракции (в виде абстрактного класса либо интерфейса). Это позволит дореализовать более
+централизованный механизм синхронизации в дальнейшем и соблюсти принцип Открытости-Закрытости (O-pen-Closed или O в SOLID). Принцип Открытости-Закрытости заключается в такой реализации
+компонентов системы, чтобы реализация дополнительного функционала производилась без модификации самих компонентов, а путем внедрения новых компонентов и изменения конфигурации системы для того чтобы
+этот функционал задействовать. В случае с компонентом хранилища, реализован абстрактный слой доступа к данным -- асинхронный интерфейс IMo-delDataRepository
+
+ \begin{lstlisting}[language=TypeScript, label=lst:domain:html]
+    /// #!/usr/env/node
+    /// Target=ES2016
+
+    const Promise = import 'promise'
+
+    default export interaface IModelDataRepository
+    {
+        /// Async data retrieval operation.
+        public async getModelData(modelId: string): Promise<ModelGeometryInfo>;
+
+        /// Async data storage operation.
+        public async storeModelData(geometry: ModelGeometryInfo, modelId: strning): Promise<void>;
+
+        /// Async data retrieval operation. Lists all the items in the storage.
+        public async listAllModelData(): Promise<ModelGeometryInfo[]>;
+
+        /// Updates the 'last modified' date on the model info storage item.
+        public async touchModelData(modelId: strning): Promise<void>;
+    }
+\end{lstlisting}
+
+Поскольку данный интерфейс является полностью асинхронным (резульатами выполнения всех операций выступает Promise-объект), не составляет труда реализация данного интерфейса, работающая, например, с
+сетевым (потому асинхронным) транспортным уровнем, либо чтение из синхронных источников, например из cookie-объектов или localStorage. 
+
+Основные модули компонента хранения:
+\begin{itemize}
+\item Базовый интерфейс IRepository, являющийся родительским для всех интерфейсов-репозиториев
+\item Интерфейс IModelDataRepository
+\item Класс LocalStorageModelDataRepository, реализующий интерфейс IMo-delDataRepository. Является асинхронной реализацией, построенной на основе синхронного доступа к Browser Local Storage.
+\item Интерфейс IUserSettingsDataRepository
+\item Класс LocalStorageUserSettingsDataRepository, реализующий интерфейс IUserSettingsDataRepository. Реализует асинхронный доступ к пользовательским настройскам (предпочитаемый размер окна,
+горячие клавиши и т.д.)
+\item Интерфейс ICompiledShaderCache
+\item Класс LocalStorageCompiledShaderCache, реализующий операции доступа к прекомпилированным шейдерам для различных материалов в трехмерной модели.
+\item Интерфейс IConfigurationProvider, реализующий чтение конфигурации приложения, необходимой для работы метода-фабрики (опционального инстанциирования репозиториев).
+\end{itemize}
+
+Публичный интерфейс данного компонента представляет из себя набор интерфейсов и методов-фабрик, реализующих инстанциирование экземпляров классов, реализующих данные интерфейсы:
+\begin{itemize}
+\item Интерфейс IRepository
+\item Интерфейс IModelDataRepository
+\item Интерфейс IUserSettingsDataRepository
+\item Интерфейс ICompiledShaderCache
+\item метод-фабрика getInstanceFor<T>(), где T является дочерним к интерфейсу маркеру IRepository
+\end{itemize}
