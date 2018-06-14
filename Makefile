@@ -11,7 +11,7 @@ BIBTEX = bibtex
 RM = rm -f
 GREP = grep
 
-all: $(DIPLOMA_REPORT_PDF).pdf $(TITLE_PDF).pdf $(REVIEW_PDF).pdf
+all: $(DIPLOMA_REPORT_PDF).pdf $(REVIEW_PDF).pdf
 
 fast: *.tex
 	latexmk -pdf -pdflatex="pdflatex" $(DIPLOMA_REPORT_PDF)
@@ -30,9 +30,6 @@ $(DIPLOMA_REPORT_PDF).pdf: *.tex
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
 
-
-$(TITLE_PDF).pdf: *.tex
-	$(PDFLATEX) $(TITLE_PDF)
 
 $(REVIEW_PDF).pdf: *.tex
 	$(PDFLATEX) $(REVIEW_PDF)
