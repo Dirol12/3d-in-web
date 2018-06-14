@@ -16,14 +16,14 @@
 \end{itemize}
 
 Шейдеры обеспечивают большую гибкость и высокую реалистичность современной трехмерной графики, позволяя использовать новые эффекты отображения для достижения ошеломляющих
-результатов. В данном проекте извлекаются из кода на JavaScript и сохраняются в системе WebGL, готовыми к использованию. На рисунке \ref{figure:domain:shaders} показана типовая последовательность
+результатов. В данном проекте извлекаются из кода на JavaScript и сохраняются в системе WebGL, готовыми к использованию. На рисунке \ref{figure:dev:shaders} показана типовая последовательность
 операций – от запуска программы JavaScript до передачи шейдеров систему WebGL, – которая применяется при рисовании фигур.
 
 \begin{figure}[ht]
 \centering
   \includegraphics[scale=0.4]{shaders.png}
   \caption{Последовательность операций, от запуска программы JavaScript до отображения результатов в окне браузера}
-  \label{figure:domain:shaders}
+  \label{figure:dev:shaders}
 \end{figure}
 
 Слева на рисунке  изображены два окна браузера. Это одно и то же окно в разные моменты времени. Вверху показано окно браузера перед выполнением программы JavaScript,
@@ -37,6 +37,110 @@
 \centering
   \includegraphics[scale=0.9]{pixel_shader.png}
   \caption{Пример простого фрагментного шейдера}
-  \label{figure:domain:pixel_shader}
+  \label{figure:dev:pixel_shader}
 \end{figure}
 
+\subsection{Разработка OpenGL кода отображения трехмерной модели}
+\label{sub:dev:shaders:opengl}
+
+Для реализации системного компонента Rendering (кода по отображению трехмерной модели) используется JS API для открытой библиотеки трехмерной графики OpenGL. Реализация отображения
+модели заключается в процессе итерации по вершинам трехмерной модели в порядке, определенном в списке треугольников трехмерной модели (индексы в треугольнике указаны против часовой стрелки
+в трехмерном пространстве), с поочередным выставлением UV-координат каждой вершины в диффузной текстуре отображаемого материала.
+
+Процесс отображения модели в WebGL приложении начинается с инициализации WebGL и установки параметров сцены, таких как стандартное освещение (Ambient Light или глобальный источкик
+освещения), направленное освещение (точечный источник, находящийся на бесконечном удалении от камеры и объектов сцены) и положение камеры, а также некоторые из элементов инициализации
+более высокоуровневой системы отображения (объекта HTMLCanvasElement):
+
+\begin{lstlisting}[language=TypeScript, label=lst:dev:setup]
+  // CANVAS
+  var canvasWidth = window.innerWidth;
+  var canvasHeight = window.innerHeight;
+
+  // CAMERA
+  camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    1,
+    80000
+  );
+
+  camera.position.set(
+    -600,
+    550,
+    1300
+  );
+
+  // LIGHTS
+  ambientLight = new THREE.AmbientLight(0x333333);
+  light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
+
+  // GLOBALS
+  scene = new THREE.Scene();
+  group = new THREE.Group();
+  scene.background = new THREE.Color(0xAAAAAA);
+  scene.add(ambientLight);
+  scene.add(light);
+  scene.add(group);
+  
+\end{lstlisting}
+
+Процесс инициализации стандартных материалов для механизмов отображения осуществляется посредством доступа к объектом прострнства имен THREE.***Material. Ниже осуществляется подключение
+стаднартных материалов, используемых для отладки трехмерной графики:
+
+\begin{lstlisting}[language=TypeScript, label=lst:dev:mat]
+
+// MATERIALS
+var materialColor = new THREE.Color();
+materialColor.setRGB(1.0, 1.0, 1.0);
+wireMaterial = new THREE.MeshBasicMaterial({
+  color: 0xFFFFFF, wireframe: true
+});
+
+flatMaterial = new THREE.MeshPhongMaterial({
+  color: materialColor, specular: 0x000000,
+  flatShading: true, side: THREE.DoubleSide
+});
+
+gouraudMaterial = new THREE.MeshLambertMaterial({
+  color: materialColor, side: THREE.DoubleSide 
+});
+
+phongMaterial = new THREE.MeshPhongMaterial({
+  color: materialColor, side: THREE.DoubleSide 
+});
+
+texturedMaterial = new THREE.MeshPhongMaterial({
+  color: materialColor, map: textureMap, side: THREE.DoubleSide 
+});
+
+reflectiveMaterial = new THREE.MeshPhongMaterial({
+  color: materialColor, envMap: textureCube,
+  side: THREE.DoubleSide
+});
+
+\end{lstlisting}
+
+Собственно отображение геометрии объекта осуществляется посредством инстанциирования объекта ConvexBufferGeometry
+и передачи ему набора точек, составляющих геометрическое представление трехмерной модели:
+
+\begin{lstlisting}[language=TypeScript, label=lst:dev:setup]
+    var meshGeometry = new THREE.ConvexBufferGeometry( pointsGeometry.vertices );
+    var mesh = new THREE.Mesh( meshGeometry, meshMaterial );
+    mesh.material.side = THREE.BackSide;
+    mesh.renderOrder = 0;
+    group.add( mesh );
+    var mesh = new THREE.Mesh( meshGeometry, meshMaterial.clone() );
+    mesh.material.side = THREE.FrontSide;
+    mesh.renderOrder = 1;
+    group.add( mesh );
+\end{lstlisting}
+
+Дальнейший контроль за отображением объектов можно осуществлять следующими способами:
+
+\begin{itemize}
+\item путем манипуляции точками в массиве pointsGeometry;
+\item путем манипуляции параметрами тесселяции, однако для этого необходимо изменить метод рендеринга,
+описанный выше, добавив в него поддержку работы с тесселируемым материалов;
+\item путем реализации собственного вершинного шейдера для манипуляции элементами геометрии объекта, однако
+такая манипуляция не будет иметь зависимости от смежных вершин, так как будет производиться графическим процессором.
+\end{itemize}
